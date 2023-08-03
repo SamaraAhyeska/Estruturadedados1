@@ -1,1 +1,112 @@
+#include <iostream>
+#include <string>
+
+struct Livro {
+     char  titulo;
+     char autor;
+    int npaginas;
+    int ano;
+};
+
+struct Biblioteca {
+    Livro livros[10];
+    int quantidadeLivros;
+};
+
+void cadLiv(Biblioteca & biblioteca) {
+    if (biblioteca.quantidadeLivros >= 10) {
+        printf("Biblioteca cheia.");
+        return;
+    }
+
+    Livro livro;
+    printf("Digite o título do livro: ");
+   scanf("%[^\n]%*c", livro.titulo);
+
+    printf ("Digite o nome do autor: ");
+    scanf("%[^\n]%*c", livro.autor);
+
+     printf ("Digite o número de páginas: ");
+    scanf("%d", livro.npaginas);
+
+    scanf("%d", livro.ano);
+
+    biblioteca.livros[biblioteca.quantidadeLivros] = livro;
+    biblioteca.quantidadeLivros++;
+
+     printf("Livro cadastrado.");
+}
+
+// Função para mostrar todos os livros cadastrados
+void mostrarLivros(const Biblioteca& biblioteca) {
+   printf("Lista de livros cadastrados:");
+    for (int i = 0; i < biblioteca.quantidadeLivros; i++) {
+        printf("Título: ",  biblioteca.livros[i].titulo);
+        printf ("Autor: ", biblioteca.livros[i].autor);
+        printf( "Páginas: ", biblioteca.livros[i].npaginas);
+        printf( "------------------------" );
+    }
+}
+
+// Função para mostrar o livro com maior número de páginas
+void livroComMaiorPaginas(const Biblioteca& biblioteca) {
+    if (biblioteca.quantidadeLivros == 0) {
+        printf( "Não há livros ainda.");
+        return;
+    }
+
+    const Livro* maiorLivro = &biblioteca.livros[0];
+    for (int i = 1; i < biblioteca.quantidadeLivros; i++) {
+        if (biblioteca.livros[i].npaginas > maiorLivro->npaginas) {
+            maiorLivro = &biblioteca.livros[i];
+        }
+    }
+
+   printf("Livro com maior número de páginas:");
+   printf( "Título: ", maiorLivro->titulo);
+   printf("Autor: ", maiorLivro->autor);
+   printf( "Páginas: ", maiorLivro->npaginas );
+}
+
+// Função menu
+void menu() {
+    Biblioteca biblioteca;
+    biblioteca.quantidadeLivros = 0;
+
+    int opcao;
+    do {
+        printf( "Menu de opcoes:\n");
+        printf("1. Cadastrar novo livro\n");
+        printf("2. Mostrar todos os livros cadastrados\n");
+        printf("3. Mostrar livro com maior numero de paginas\n");
+        printf("4. Sair\n");
+
+        scanf("%d", &opcao);
+        std::cin.ignore(); // Ignora o caractere de nova linha deixado pelo std::cin
+
+        switch (opcao) {
+        case 1:
+            cadLiv(biblioteca);
+            break;
+        case 2:
+            mostrarLivros(biblioteca);
+            break;
+        case 3:
+            livroComMaiorPaginas(biblioteca);
+            break;
+        case 4:
+           printf("Encerrando o programa.");
+            break;
+        default:
+             printf("Opção inválida. Tente novamente.");
+        }
+
+       printf("\n");
+    } while (opcao != 4);
+}
+
+int main() {
+    menu();
+    return 0;
+}
 
