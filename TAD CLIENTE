@@ -39,10 +39,9 @@ struct Cliente {
     void calcularIdade() {
         Data data_atual;
         // Obter a data atual do sistema
-        data_atual.dia = 4;  // Ajuste manual, substitua pela data atual do sistema
-        data_atual.mes = 8;  // Ajuste manual, substitua pela data atual do sistema
-        data_atual.ano = 2023;  // Ajuste manual, substitua pela data atual do sistema
-
+        data_atual.dia = 4;  
+        data_atual.mes = 8;  
+        data_atual.ano = 2023;  
         idade = data_atual.ano - dataNascimento.ano;
         if (data_atual.mes < dataNascimento.mes || (data_atual.mes == dataNascimento.mes && data_atual.dia < dataNascimento.dia)) {
             idade--;
