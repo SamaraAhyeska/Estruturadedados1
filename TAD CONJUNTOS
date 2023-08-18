@@ -10,7 +10,7 @@ void lerConjunto(struct Conjunto *c) {
     printf("Digite o tamanho do conjunto: ");
     scanf("%d", &c->tamanho);
 
-    c->elementos = (int *)malloc(c->tamanho * sizeof(int)); // Alocação dinâmica
+    c->elementos = (int *)malloc(c->tamanho * sizeof(int));
 
     printf("Digite os elementos do conjunto:\n");
     for (int i = 0; i < c->tamanho; i++) {
@@ -19,9 +19,8 @@ void lerConjunto(struct Conjunto *c) {
 }
 
 void uniaoConjuntos(const struct Conjunto *c1, const struct Conjunto *c2, struct Conjunto *resultado) {
-    resultado->tamanho = 0; // Inicializar tamanho do resultado
-    resultado->elementos = (int *)malloc((c1->tamanho + c2->tamanho) * sizeof(int)); // Alocação dinâmica
-
+    resultado->tamanho = 0;
+    resultado->elementos = (int *)malloc((c1->tamanho + c2->tamanho) * sizeof(int)); 
     for (int i = 0; i < c1->tamanho; i++) {
         resultado->elementos[resultado->tamanho++] = c1->elementos[i];
     }
@@ -43,7 +42,6 @@ void uniaoConjuntos(const struct Conjunto *c1, const struct Conjunto *c2, struct
     }
 }
 
-// Restante do código para interseção e igualdade de conjuntos...
 
 int main() {
     struct Conjunto conjunto1, conjunto2, uniao, intersecao;
@@ -54,9 +52,8 @@ int main() {
     printf("Conjunto 2:\n");
     lerConjunto(&conjunto2);
 
-    // Restante do código para unir, encontrar interseção e verificar igualdade de conjuntos...
-
-    free(conjunto1.elementos); // Libere a memória alocada
+    
+    free(conjunto1.elementos);
     free(conjunto2.elementos);
     free(uniao.elementos);
     free(intersecao.elementos);
